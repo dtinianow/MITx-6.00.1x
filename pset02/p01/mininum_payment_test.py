@@ -20,8 +20,5 @@ class MinimumPaymentTest(unittest.TestCase):
         expected = 'Remaining balance: 31.38'
         self.assertEqual(actual, expected)
 
-
-
-
 if __name__ == "__main__":
     unittest.main()
