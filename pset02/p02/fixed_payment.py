@@ -1,4 +1,4 @@
-def remaining_balance(balance, annualInterestRate):
+def fixed_monthly_payment(balance, annualInterestRate):
     currentBalance = balance
     monthlyInterestRate = annualInterestRate / 12.0
     fixedMonthlyPayment = 0
