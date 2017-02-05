@@ -54,7 +54,7 @@ def isWordGuessed(secretWord, lettersGuessed):
     unguessedChars = secretChars
 
     for letter in lettersGuessed:
-        if (letter in secretChars):
+        if letter in secretChars:
             unguessedChars.remove(letter)
 
     return unguessedChars == []
@@ -67,8 +67,15 @@ def getGuessedWord(secretWord, lettersGuessed):
     returns: string, comprised of letters and underscores that represents
       what letters in secretWord have been guessed so far.
     '''
-    # FILL IN YOUR CODE HERE...
+    guessedWord = ''
 
+    for secretLetter in secretWord:
+        if secretLetter in lettersGuessed:
+            guessedWord += secretLetter
+        else:
+            guessedWord += '_ '
+
+    return guessedWord
 
 
 def getAvailableLetters(lettersGuessed):
