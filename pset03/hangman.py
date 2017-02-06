@@ -1,12 +1,3 @@
-# Hangman game
-#
-
-# -----------------------------------
-# Helper code
-# You don't need to understand this helper code,
-# but you will have to know how to use the functions
-# (so be sure to read the docstrings!)
-
 import random
 
 WORDLIST_FILENAME = "words.txt"
@@ -35,13 +26,6 @@ def chooseWord(wordlist):
     Returns a word from wordlist at random
     """
     return random.choice(wordlist)
-
-# end of helper code
-# -----------------------------------
-
-# Load the list of words into the variable wordlist
-# so that it can be accessed from anywhere in the program
-wordlist = loadWords()
 
 def isWordGuessed(secretWord, lettersGuessed):
     '''
@@ -111,16 +95,46 @@ def hangman(secretWord):
 
     Follows the other limitations detailed in the problem write-up.
     '''
-    # FILL IN YOUR CODE HERE...
+    mistakesMade = 0
+    availableGuesses = 8
+    lettersGuessed = []
 
+    print('Welcome to the game, Hangman!')
+    print('I am thinking of a word that is %s letters long.' % len(secretWord))
 
+    while mistakesMade < availableGuesses and not isWordGuessed(secretWord, lettersGuessed):
+        remainingGuesses = availableGuesses - mistakesMade
+        print('-------------')
+        print('You have %s guesses left.' % remainingGuesses)
+        print('Available letters: %s' % getAvailableLetters(lettersGuessed))
+        guess = input('Please guess a letter: ').lower()
 
+        if guess in lettersGuessed:
+            print('Oops! You\'ve already guessed that letter: %s' % getGuessedWord(secretWord, lettersGuessed))
+            continue
 
+        lettersGuessed.append(guess)
+        guessedWord = getGuessedWord(secretWord, lettersGuessed)
 
+        if guess in secretWord:
+            print('Good guess: %s' % guessedWord)
+        else:
+            print('Oops! That letter is not in my word: %s' % guessedWord)
+            mistakesMade += 1
+
+    print('-------------')
+    if mistakesMade == availableGuesses:
+        print('Sorry, you ran out of guesses. The word was %s.' % secretWord)
+    else:
+        print('Congratulations, you won!')
+
+# Load the list of words into the variable wordlist
+# so that it can be accessed from anywhere in the program
+wordlist = loadWords()
 
 # When you've completed your hangman function, uncomment these two lines
 # and run this file to test! (hint: you might want to pick your own
 # secretWord while you're testing)
 
-# secretWord = chooseWord(wordlist).lower()
-# hangman(secretWord)
+secretWord = chooseWord(wordlist).lower()
+hangman(secretWord)
