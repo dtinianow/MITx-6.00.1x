@@ -26,5 +26,13 @@ class HangmanTest(unittest.TestCase):
 
         self.assertEqual(actual, expected)
 
+    def test_it_can_get_available_letters(self):
+        lettersGuessed = ['e', 'i', 'k', 'p', 'r', 's']
+        actual = getAvailableLetters(lettersGuessed)
+        expected = 'abcdfghjlmnoqtuvwxyz'
+
+        self.assertEqual(actual, expected)
+
+
 if __name__ == "__main__":
     unittest.main()
